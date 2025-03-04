@@ -16,7 +16,8 @@ The first approach in privilege escalation is to identify **SUID binaries**, whi
 find / -perm -4000 2>/dev/null
 ```
 
-📸 **Screenshot:** Capture the output of this command.
+![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/1.bmp)
+
 
 ### Output Analysis
 The command lists several SUID binaries, including `/usr/bin/pkexec`. `pkexec` is part of **Polkit**, a system service often associated with privilege escalation vulnerabilities.
@@ -28,7 +29,7 @@ To see if our version of `pkexec` is vulnerable, we check its version:
 pkexec --version
 ```
 
-📸 **Screenshot:** Capture the `pkexec --version` output.
+![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/2.bmp)
 
 ### Output:
 ```
@@ -41,7 +42,7 @@ Next, we search for exploits:
 searchsploit pkexec
 ```
 
-📸 **Screenshot:** Capture the `searchsploit` results.
+![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/3.bmp)
 
 ### Analysis
 The available exploits target older versions. Since our installed `pkexec` is version 125, no working exploit is found. This means we need to **pivot** and look for alternative privilege escalation paths.
@@ -53,7 +54,7 @@ Since `pkexec` was not exploitable, we inspect our **sudo** privileges:
 sudo -l
 ```
 
-📸 **Screenshot:** Capture the output of `sudo -l`.
+![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/4.bmp)
 
 ### Output:
 ```
@@ -76,7 +77,7 @@ Then, verify our new privileges:
 whoami
 ```
 
-📸 **Screenshot:** Capture `whoami` output showing `root`.
+![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/5.bmp)
 
 ### Expected Output:
 ```
@@ -90,7 +91,7 @@ We further validate our privileges:
 id
 ```
 
-📸 **Screenshot:** Capture `id` output confirming `root` privileges.
+![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/6.bmp)
 
 ### Expected Output:
 ```
@@ -108,8 +109,4 @@ This practical walkthrough highlights how attackers systematically explore privi
 🔹 **Monitor SUID binaries** – Regularly audit executable permissions.  
 🔹 **Patch vulnerabilities** – Keep software up to date.
 
-📸 **Final Screenshot:** Capture the entire privilege escalation process for documentation.
-
----
-This structured approach showcases problem-solving skills and adaptability—essential traits in cybersecurity!
 
