@@ -112,5 +112,17 @@ This practical walkthrough highlights how attackers systematically explore privi
 ### Key Takeaways
 🔹 **Limit sudo privileges** – Avoid `ALL` permissions for non-admin users.  
 🔹 **Monitor SUID binaries** – Regularly audit executable permissions.  
-🔹 **Patch vulnerabilities** – Keep software up to date.
+🔹 **Patch vulnerabilities** – Keep software up to date.  
+
+---
+
+## 📌 Lessons Learned
+Through this exercise, I reinforced several key cybersecurity principles:
+- **Persistence is key** – Initial attempts may fail, but pivoting to alternative attack vectors is crucial.
+- **Security misconfigurations are dangerous** – Simple misconfigurations (like unrestricted `sudo` access) can lead to full system compromise.
+- **Real-world application** – Understanding privilege escalation is essential for penetration testing and system hardening.
+
+🔹 This project strengthened my ability to systematically analyze privilege escalation techniques and identify potential security weaknesses in Linux environments.
+
+🚀 I am excited to continue exploring more advanced exploitation techniques and improving my cybersecurity skills!
 
