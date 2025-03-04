@@ -16,8 +16,8 @@ The first approach in privilege escalation is to identify **SUID binaries**, whi
 find / -perm -4000 2>/dev/null
 ```
 
-![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/1.bmp)
-
+📸 **SUID Binaries Output**  
+![SUID Output](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/suid-binaries-output.png)
 
 ### Output Analysis
 The command lists several SUID binaries, including `/usr/bin/pkexec`. `pkexec` is part of **Polkit**, a system service often associated with privilege escalation vulnerabilities.
@@ -29,7 +29,8 @@ To see if our version of `pkexec` is vulnerable, we check its version:
 pkexec --version
 ```
 
-![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/2.bmp)
+📸 **pkexec Version Output**  
+![pkexec Version](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/pkexec-version.png)
 
 ### Output:
 ```
@@ -42,7 +43,8 @@ Next, we search for exploits:
 searchsploit pkexec
 ```
 
-![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/3.bmp)
+📸 **pkexec Exploit Search Output**  
+![pkexec Exploit Search](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/pkexec-searchsploit.png)
 
 ### Analysis
 The available exploits target older versions. Since our installed `pkexec` is version 125, no working exploit is found. This means we need to **pivot** and look for alternative privilege escalation paths.
@@ -54,7 +56,8 @@ Since `pkexec` was not exploitable, we inspect our **sudo** privileges:
 sudo -l
 ```
 
-![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/4.bmp)
+📸 **Sudo -l Output**  
+![Sudo -l Output](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/sudo-l-output.png)
 
 ### Output:
 ```
@@ -77,7 +80,8 @@ Then, verify our new privileges:
 whoami
 ```
 
-![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/5.bmp)
+📸 **Root Access via Sudo**  
+![Root Access](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/sudo-root-success.png)
 
 ### Expected Output:
 ```
@@ -91,7 +95,8 @@ We further validate our privileges:
 id
 ```
 
-![SUID Output](https://github.com/radu2208/linux-privilege-escalation/raw/refs/heads/main/6.bmp)
+📸 **Root Privileges Confirmation**  
+![Root Privileges](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/id-root-confirmation.png)
 
 ### Expected Output:
 ```
@@ -108,5 +113,4 @@ This practical walkthrough highlights how attackers systematically explore privi
 🔹 **Limit sudo privileges** – Avoid `ALL` permissions for non-admin users.  
 🔹 **Monitor SUID binaries** – Regularly audit executable permissions.  
 🔹 **Patch vulnerabilities** – Keep software up to date.
-
 
