@@ -16,7 +16,7 @@ The first approach in privilege escalation is to identify **SUID binaries**, whi
 find / -perm -4000 2>/dev/null
 ```
 
-📸 **SUID Binaries Output**  
+ **SUID Binaries Output**  
 ![SUID Output](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/suid-binaries-output.png)
 
 ### Output Analysis
@@ -29,7 +29,7 @@ To see if our version of `pkexec` is vulnerable, we check its version:
 pkexec --version
 ```
 
-📸 **pkexec Version Output**  
+ **pkexec Version Output**  
 ![pkexec Version](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/pkexec-version.png)
 
 ### Output:
@@ -43,7 +43,7 @@ Next, we search for exploits:
 searchsploit pkexec
 ```
 
-📸 **pkexec Exploit Search Output**  
+ **pkexec Exploit Search Output**  
 ![pkexec Exploit Search](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/pkexec-searchsploit.png)
 
 ### Analysis
@@ -56,7 +56,7 @@ Since `pkexec` was not exploitable, we inspect our **sudo** privileges:
 sudo -l
 ```
 
-📸 **Sudo -l Output**  
+ **Sudo -l Output**  
 ![Sudo -l Output](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/sudo-l-output.png)
 
 ### Output:
@@ -80,7 +80,7 @@ Then, verify our new privileges:
 whoami
 ```
 
-📸 **Root Access via Sudo**  
+ **Root Access via Sudo**  
 ![Root Access](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/sudo-root-success.png)
 
 ### Expected Output:
@@ -95,7 +95,7 @@ We further validate our privileges:
 id
 ```
 
-📸 **Root Privileges Confirmation**  
+ **Root Privileges Confirmation**  
 ![Root Privileges](https://raw.githubusercontent.com/radu2208/linux-privilege-escalation/main/id-root-confirmation.png)
 
 ### Expected Output:
@@ -110,19 +110,19 @@ This practical walkthrough highlights how attackers systematically explore privi
 3. **Exploitation:** A misconfigured `sudo` allowed full root access.
 
 ### Key Takeaways
-🔹 **Limit sudo privileges** – Avoid `ALL` permissions for non-admin users.  
-🔹 **Monitor SUID binaries** – Regularly audit executable permissions.  
-🔹 **Patch vulnerabilities** – Keep software up to date.  
+- **Limit sudo privileges** – Avoid `ALL` permissions for non-admin users.  
+- **Monitor SUID binaries** – Regularly audit executable permissions.  
+- **Patch vulnerabilities** – Keep software up to date.  
 
 ---
 
-## 📌 Lessons Learned
+##  Lessons Learned
 Through this exercise, I reinforced several key cybersecurity principles:
 - **Persistence is key** – Initial attempts may fail, but pivoting to alternative attack vectors is crucial.
 - **Security misconfigurations are dangerous** – Simple misconfigurations (like unrestricted `sudo` access) can lead to full system compromise.
 - **Real-world application** – Understanding privilege escalation is essential for penetration testing and system hardening.
 
-🔹 This project strengthened my ability to systematically analyze privilege escalation techniques and identify potential security weaknesses in Linux environments.
+ This project strengthened my ability to systematically analyze privilege escalation techniques and identify potential security weaknesses in Linux environments.
 
-🚀 I am excited to continue exploring more advanced exploitation techniques and improving my cybersecurity skills!
+ I am excited to continue exploring more advanced exploitation techniques and improving my cybersecurity skills!
 
